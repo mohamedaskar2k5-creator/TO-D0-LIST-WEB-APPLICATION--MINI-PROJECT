@@ -1,0 +1,26 @@
+body {
+    background: #f0f0f0;
+    font-family: Arial;
+}
+
+.box {
+    width: 260px;
+    background: white;
+    padding: 15px;
+    margin: 100px auto;
+}
+
+button {
+    background: green;
+    color: white;
+    border: none;
+}
+
+li {
+    margin-top: 6px;
+}
+
+.done {
+    text-decoration: line-through;
+    color: gray;
+}

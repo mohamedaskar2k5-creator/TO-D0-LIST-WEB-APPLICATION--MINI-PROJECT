@@ -1,43 +1,26 @@
-var list = document.getElementById("list");
-
-window.onload = function () {
-    var saved = localStorage.getItem("tasks");
-    if (saved != null) {
-        list.innerHTML = saved;
-    }
-};
-
 function addTask() {
-    var task = document.getElementById("task").value;
+    let input = document.getElementById("taskInput");
+    let task = input.value.trim();
 
-    if (task == "") {
-        alert("Enter task");
+    if (task === "") {
+        alert("Please enter a task");
         return;
     }
 
-    var li = document.createElement("li");
+    let li = document.createElement("li");
+    li.innerHTML = `
+        <span>${task}</span>
+        <button class="delete-btn" onclick="deleteTask(this)">DELETE</button>
+    `;
 
-    var cb = document.createElement("input");
-    cb.type = "checkbox";
-
-    cb.onclick = function () {
-        if (cb.checked) {
-            li.className = "done";
-        } else {
-            li.className = "";
-        }
-        save();
-    };
-
-    li.appendChild(cb);
-    li.append(" " + task);
-
-    list.appendChild(li);
-    document.getElementById("task").value = "";
-
-    save();
+    document.getElementById("taskList").appendChild(li);
+    input.value = "";
 }
 
-function save() {
-    localStorage.setItem("tasks", list.innerHTML);
+function deleteTask(button) {
+    button.parentElement.remove();
+}
+
+function resetList() {
+    document.getElementById("taskList").innerHTML = "";
 }
